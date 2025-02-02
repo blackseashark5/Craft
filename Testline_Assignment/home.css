@@ -1,0 +1,358 @@
+/*
+   font-family: 'Rubik', sans-serif;
+   font-family: 'Karla', sans-serif;
+*/
+
+* {
+   margin: 0;
+   padding: 0;
+}
+
+html {
+   height: 100%;
+}
+
+body {
+   background-image: url(images/background1_1080.png);
+   background-size: cover;
+   background-position: 50% 0%;
+}
+
+.disabled-button {
+   opacity: 50%;
+}
+
+/*Code Input*/
+#code-input {
+   height: 55px;
+   width: 200px;
+   outline: none;
+
+   margin-top: 20px;
+   margin-bottom: 20px;
+
+   border: 1px solid #dde3e5;
+
+   font-size: 32px;
+   text-align: center;
+   color: #323538;
+}
+
+/* Button */
+#play-button {
+   height: 55px;
+
+   margin-top: 20px;
+   margin-bottom: 20px;
+   padding-left: 20px;
+   padding-right: 20px;
+
+   outline: none;
+   border: 1px solid #dde3e5;
+   background-color: #09d079;
+
+   font-size: 32px;
+   color: #fff;
+
+   cursor: pointer;
+}
+
+/* Credits */
+#background-credits {
+   position: absolute;
+   right: 16px;
+   bottom: 16px;
+   margin: 0;
+
+   color: #757575;
+}
+
+/* Middle Stuff */
+#content {
+   margin: 20% auto;
+   width: 60%;
+   text-align: center;
+
+   color: white;
+   
+   text-shadow: #000 0px 0px 5px;
+}
+
+/* Navbar stuff */
+.navbar-text /* just affects the "want to create your own quiz?" part rn */
+{
+   padding-right: 16px;
+}
+
+#sign-up, #log-in {
+   margin-left: 5px;
+   margin-right: 5px;
+
+   border-radius: 10px;
+   /* border: 1px solid black; */
+}
+
+#sign-up {
+   background-color: rgb(9, 208, 121);
+   box-shadow: 1px 2px rgb(8, 184, 107);
+   color: rgb(255, 255, 255);
+}
+
+#log-in {
+   background-color: rgb(200, 244, 226);
+   box-shadow: 1px 2px rgb(179, 239, 215);
+   color: rgb(84, 89, 94);
+}
+
+#sign-up:hover {
+   background-color: rgb(8, 184, 107);
+   box-shadow: 1px 2px rgb(7, 159, 93);
+}
+
+#log-in:hover {
+   background-color: rgb(179, 239, 215);
+   box-shadow: 1px 2px rgb(158, 235, 203);
+}
+
+/*** MODAL ***/
+.modal-bg {
+   width: 100%;
+   height: 100vh;
+
+   position: fixed; /* we want it to stay even if they scroll */
+   top: 0;
+   left: 0;
+
+   background-color: rgba(0, 0, 0, 0.5);
+
+   display: flex;
+   justify-content: center; /* horizontal */
+   align-items: center; /* vertical */
+
+   visibility: hidden;
+   opacity: 0; /* redundant? */
+   transition: opacity 0.5s;
+}
+
+.modal-bg-active {
+   visibility: visible;
+   opacity: 1;
+}
+
+.modal2 {
+   width: 80%;
+   max-width: 350px;
+   height: 60%;
+
+   background-color: #ffffff;
+
+   padding: 40px;
+   position: relative; /* so exit "button"'s absolute position works relative to the modal */
+
+   font-family: 'Karla', sans-serif;
+}
+
+.modal2 h2 {
+   font-family: 'Rubik', sans-serif;
+}
+
+.modal2 hr {
+   border-top: 1px solid rgb(221, 227, 229);
+}
+
+#modal-form {
+   display: flex;
+   flex-direction: column;
+   position: relative;
+}
+
+.input-container {
+   width: 100%;
+   height: 50px;
+
+   margin-bottom: 10px;
+
+   display: flex;
+   position: relative;
+   overflow: hidden; /* so our colored border to the left doesn't show up */
+}
+
+.input-container input {
+   width: 100%;
+   height: 100%;
+
+   padding-top: 20px;
+
+   border: none;
+   outline: none;
+}
+
+.input-container label {
+   width: 100%;
+   height: 100%;
+
+   margin: 0;
+   padding: 0;
+   
+   position: absolute;
+   bottom: 0px;
+   left: 0px;
+
+   pointer-events: none; /* so you can click the input that's underneath */
+
+   border-bottom: 1px solid rgb(84, 89, 94);
+}
+
+.input-container label::after {
+   content: "";
+   
+   width: 100%;
+   height: 100%;
+   
+   position: absolute;
+   bottom: -1px; /* so it covers the other border */
+   left: 0px;
+
+   border-bottom: 2px solid rgb(9, 208, 121);
+
+   transform: translateX(-100%);
+   transition: transform 0.3s ease;
+}
+
+.input-container span {
+   width: 100%;
+   
+   position: absolute;
+   bottom: 1px;
+
+   /* transition: all 0.3s ease; using 'all' made if fade out when modal was closed */
+   transition-property: transform, font-size, color;
+   transition-duration: 0.3s;
+   transition-timing-function: ease;
+}
+
+/* Move label's (span's) text up */
+.input-container input:focus + label span, /* the label is below in the html so we can use + */
+.input-container input:valid + label span
+{
+   transform: translateY(-100%);
+   font-size: 0.95em;
+   color: rgb(9, 208, 121);
+}
+
+/* https://stackoverflow.com/questions/8639282/notempty-css-selector-is-not-working - see Mo's answer*/
+.input-container input[value]:not([value=""]):not(:focus):invalid + label span
+{
+   transform: translateY(-100%);
+   font-size: 0.95em;
+   color: rgb(245, 102, 102);
+}
+
+/* Move in colored border */
+.input-container input:focus + label::after,
+.input-container input:valid + label::after
+{
+   transform: translateX(0);
+}
+
+.input-container input[value]:not([value=""]):not(:focus):invalid + label::after
+{
+   transform: translateX(0);
+   border-color: rgb(245, 102, 102);
+}
+
+/* Exit modal button */
+.modal-exit {
+   position: absolute;
+   top: 5px;
+   right: 11px;
+   color: rgb(245, 102, 102);
+   cursor: pointer;
+}
+
+/* Sign up / Log in button*/
+.modal2 button {
+   height: 40px;
+
+   margin-top: 20px;
+   margin-bottom: 10px;
+
+   outline: none;
+   /* border: 1px solid #BDBDBD; */
+   border: none;
+   background-color: #09d079;
+
+   font-size: 1.25em;
+   color: #fff;
+
+   cursor: pointer;
+}
+
+#google-sign-in {
+   height: 80px;
+   width: 100%;
+   display: flex;
+   justify-content: center; /* horizontal */
+   align-items: center; /* vertical */
+}
+
+/* Logo */
+#logo {
+   animation: fill-animation 0.5s ease forwards 3.5s;
+}
+
+#logo>path:nth-child(1) {
+   stroke-dasharray: 457.7647399902344;
+   stroke-dashoffset: 457.7647399902344;
+   animation: line-animation 2s ease forwards;
+}
+
+#logo>path:nth-child(2) {
+   stroke-dasharray: 397.9131164550781;
+   stroke-dashoffset: 397.9131164550781;
+   animation: line-animation 2s ease forwards 0.3s;
+}
+
+#logo>path:nth-child(3) {
+   stroke-dasharray: 235.95516967773438;
+   stroke-dashoffset: 235.95516967773438;
+   animation: line-animation 2s ease forwards 0.6s;
+}
+
+#logo>path:nth-child(4) {
+   stroke-dasharray: 411.1560363769531;
+   stroke-dashoffset: 411.1560363769531;
+   animation: line-animation 2s ease forwards 0.9s;
+}
+
+#logo>path:nth-child(5) {
+   stroke-dasharray: 309.2236633300781;
+   stroke-dashoffset: 309.2236633300781;
+   animation: line-animation 2s ease forwards 1.2s;
+}
+
+#logo>path:nth-child(6) {
+   stroke-dasharray: 329.2366638183594;
+   stroke-dashoffset: 329.2366638183594;
+   animation: line-animation 2s ease forwards 1.5s;
+}
+
+#logo>path[class="full-path"] /*removes dasharray once animation is done*/
+{
+   stroke-dasharray: 0;
+}
+
+@keyframes line-animation {
+   to {
+      stroke-dashoffset: 0;
+   }
+}
+
+@keyframes fill-animation {
+   from {
+      fill: transparent;
+   }
+   to {
+      fill: #F6A65C;
+   }
+}

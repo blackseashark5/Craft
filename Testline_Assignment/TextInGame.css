@@ -1,0 +1,165 @@
+:root {
+    /* --primary-color: rgb(241, 196, 15); */
+    --primary-color: rgb(243, 156, 18);
+    /* --primary-color: #e67e22; */
+    
+    --secondary-color: #e67e22;
+    /* --secondary-color: #d35400; */
+
+    --answer-color: #FFFFFF;
+}
+
+html, body {
+    margin: 0; 
+    height: 100vh; 
+    overflow: hidden
+}
+
+#wrapper{
+    border-width: 5px;
+    min-height:100vh;
+    max-height: 100vw;
+    width: 100vw;
+    background-color: #FFFFFF;
+    position: absolute;
+}
+
+#Answers div{
+    background-color: var(--answer-color);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+#Answers{
+    width: 70%;
+    border-left-color: var(--secondary-color, #e67e22);
+    border-right-color: var(--secondary-color, #e67e22);
+    border-left-style: solid;
+    border-right-style: solid;
+       
+}
+
+.txt{
+    width:100%;
+    border-radius: 10px;
+    border-style: solid;
+}
+
+button img{
+    height:25px;
+    width: 25px;
+}
+
+#navDiv input{
+    background-color: white;
+    text-align: center;
+    border-width: 3px;
+    width:80px;
+}
+
+#clk{
+    width:120px;
+    height: 50px;
+    border-style:solid;
+    border-width: 3px;
+    border-color: var(--secondary-color, #d35400);
+    border-radius: 15px;
+    text-align: center;
+    
+}
+
+#Nav{
+    justify-content: center;
+    /* background-color: #009688; */
+    background-color: var(--primary-color);
+    align-items: center;
+    padding: 1rem;
+}
+
+#Question{
+    flex-direction: row;
+    position:relative;
+    background-color: rgb(221, 227, 229);
+    border-radius: 20px;
+    width: 80%;
+    text-align: center;
+    margin: 30px auto;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#Footer{
+    /* background-color: #009688; */
+    background-color: rgb(84, 89, 94);
+    align-items: center;
+    padding: 1rem;
+    justify-content: space-between;
+}
+
+#Footer button{
+    border-radius: 25px;
+}
+
+#QImg{
+    align-self: center;
+    max-width: 40%;
+    max-height:40%;
+    max-height: 60vh; /* the line above didn't seem to have any effect :o */
+    margin:20px;
+    border-radius: 20px;
+}
+
+#QText{
+    border-width: 3px;
+    border-color: rgb(78, 114, 116);
+    font-weight: bold;
+    font-size: 2em;
+    border-radius: 25px;
+    padding: 10px 10px;
+    margin: 10px;
+    text-align: center;
+}
+
+.imgBtn{
+    border-style:solid;
+    border-width: 3px;
+    border-color: rgb(78, 114, 116);
+    background-color: rgb(221, 248, 237);
+    width:50px;
+    height: 50px;
+    background-repeat: no-repeat;
+    background-size: 80%;
+    background-position: center;
+}
+
+.answer{
+    margin-left: 5px;
+    margin-right: 5px;
+    font-weight: bold;
+    text-align: center;
+    height: 100%;
+    width: 30%;
+}
+
+.btn{
+    border-color: rgb(221, 248, 237);
+    background-color: rgb(221, 248, 237);
+    color: rgb(78, 114, 116);
+    font-weight: bold;
+}
+
+.ShikenBtn{
+    border-style: solid;
+    border-color: rgb(33, 70, 66);
+    border-radius: 3px;
+    background-color: rgb(221, 248, 237);
+    border-radius: 15px;
+    font-weight: bold;
+    color: rgb(33, 70, 66);
+    height: 100%;
+    width: 40%;
+}
+
+.Selected{
+    background-color: #F6A65C;
+}

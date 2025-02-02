@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <title>Craft</title>
+
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <link rel="stylesheet" href="quiz_dashboard.css">
+  </head>
+<body>
+  <nav class="navbar navbar-expand-xl navbar-dark bg-dark pmd-navbar pmd-z-depth fixed-top">
+    <a class="navbar-brand" href="#">Craft</a>
+    <div class="dropdown pmd-dropdown pmd-user-info ml-auto" id="user">
+      <buttom class="btn-user dropdown-toggle media align-items-center" data-toggle="dropdown" data-sidebar="true"
+        aria-expanded="false">
+        <img class="mr-2" src="https://i.pinimg.com/originals/96/3e/41/963e4175d6dfff373be81144c3272b25.jpg" width="40"
+          height="40" alt="avatar">
+        <i class="fa fa-caret-down"></i>
+        <div class="media-body">
+          Account
+        </div>
+      </buttom>
+      <div class="dropdown-menu ">
+        <!-- <a class="dropdown-item" href="settings.html">Settings</a> -->
+        <a id="log-out" class="dropdown-item" href="javascript:void(0);">Logout</a>
+      </div>
+    </div>
+  </nav>
+  <br>
+  <br>
+
+  <div id="optionsDiv">
+    <form class="form-inline my-2 my-lg-0">
+      <!-- Search -->
+      <input class="form-control mr-sm-2" id="buscar" type="text" placeholder="Search.." onkeyup="searh()"  aria-label="Search">
+      <!-- <button class="btn btn-outline-success my-2 my-sm-0"id="buscar1" type="submit" onclick="searchLolis()">Search</button> -->
+      <!-- Order by.-->
+      <label for="order-criteria">Order by</label>
+      <select name="order-criteria" id="sortSelect" onChange="sortBy()">
+        <option selected ></option>
+        <option value="0" >Date created</option>
+        <option value="1" >Alphabetical</option>
+      </select>
+    </form>
+    <button type="button" class="btn btn-primary" id="new"  data-toggle="modal" data-target="exampleModal">
+      <!-- "location.href='editor.html'" data-type="date" data-format-string="Do MMMM YYYY"  ;location.href='editor.html';  onChange="deleteFunction(this.rowIndex)"-->
+      + New Quiz
+    </button>
+  </div>
+
+  <div id="tableDiv">
+    <table width="100%" id="QuizTable">
+      <tr>
+        <th style="width:200px">Quiz</th>
+        <th>Date</th>
+        <th>Description</th>
+      </tr>
+    </table>
+  </div>
+  
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+    integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">
+  </script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+  </script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+  </script>
+  
+
+  <script>
+    // document.querySelectorAll('select').forEach((dropdown) => {
+    //   dropdown.addEventListener("change", function () {
+    //     if (event.target.value === "start") location.href = 'standings2.html';
+    //   });
+    // });
+
+
+    // document.querySelectorAll('select').forEach((dropdown) => {
+    //   dropdown.addEventListener("change", function () {
+    //     if (event.target.value === "edit") location.href = 'edit.html';
+    //   });
+    // });
+    $('#new').click(function() {
+   $('#exampleModal').modal('show');
+});
+  </script>
+
+  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">New quiz</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label" id="hola">Quiz name:</label>
+              <input type="text" class="form-control" id="quizName1">
+            </div>
+            <div class="form-group">
+              <label for="message-text" class="col-form-label">Description:</label>
+              <textarea class="form-control" id="descQuiz"></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary" id="creaQuizBTN">Accept</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="globalClasses.js"></script>
+  <script src="quiz_dashboard.js"></script>
+</body>
+
+</html>
